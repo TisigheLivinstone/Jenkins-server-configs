@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  jenkins:
+    image: ${JENKINS_IMAGE}
+    restart: unless-stopped
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    ports:
+      - '${JENKINS_PORT}:8080'
+      - '50000:50000 '
+    networks:
+      jenkins:
+      proxy:
+
+volumes:
+  jenkins-data: 
+
+networks:
+  jenkins:
+  proxy: 
+    external: true
